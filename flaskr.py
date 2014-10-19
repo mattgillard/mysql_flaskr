@@ -1,4 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
+    MySQLFlaskr
+    ~~~~~~
+
+    A microblog example application written as Flask tutorial with
+    Flask and MySQL.
+
+    :copyright: (c) 2011 by rysk92.
+    :license: BSD, see LICENSE for more details.
+"""
+
 # all the imports
+from __future__ import with_statement
 import os
 import MySQLdb
 from flask import Flask, request, session, g, redirect, url_for, \
@@ -7,6 +20,7 @@ from contextlib import closing
 from MySQLdb.cursors import DictCursor
 
 # configuration
+
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'root'
@@ -52,6 +66,7 @@ def teardown_request(exception):
         db.close()
 
 @app.route('/')
+
 def show_entries():
     cur = g.db.cursor(DictCursor)
     query = 'select title, text from entries order by id desc'
@@ -60,6 +75,7 @@ def show_entries():
     return render_template('show_entries.html', entries=entries)
 
 @app.route('/add', methods=['POST'])
+
 def add_entry():
     if not session.get('logged_in'):
         abort(401)
@@ -86,6 +102,7 @@ def login():
     return render_template('login.html', error=error)
 
 @app.route('/logout')
+
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
