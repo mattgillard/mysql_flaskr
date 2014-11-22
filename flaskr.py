@@ -24,7 +24,7 @@ from MySQLdb.cursors import DictCursor
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'root'
-PASSWORD = 'default'
+PASSWORD = 'root'
 
 # create our little application :)
 app = Flask(__name__)
